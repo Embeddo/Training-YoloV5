@@ -1,0 +1,7 @@
+train:
+val:
+test: ../train_data/images/train/ # test images
+
+# Classes
+nc: 3  # number of classes
+names: ['viva', 'grupo', 'morta']  # class names
