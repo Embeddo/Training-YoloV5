@@ -25,7 +25,7 @@ class Training_preparation_data_set:
             
             self.TRAIN_VAL_PERCENTAGE = 0.2
             
-            self.FOLDER_TO_ZIP = "train_data/train_data"
+            self.FOLDER_TO_ZIP = "train_data"
             self.ZIP_FILE_PATH = "train_data.zip"
 
         settings()
