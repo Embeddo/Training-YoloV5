@@ -5,7 +5,6 @@ import random
 import shutil
 import zipfile
 
-
 class Training_preparation_data_set:
     def __init__(self, Input_folder):
         
@@ -27,7 +26,7 @@ class Training_preparation_data_set:
             self.TRAIN_VAL_PERCENTAGE = 0.2
             
             self.FOLDER_TO_ZIP = "train_data"
-            self.ZIP_FILE_PATH = "dataset.zip"
+            self.ZIP_FILE_PATH = "train_data.zip"
 
         settings()
         
