@@ -18,14 +18,14 @@ class Training_preparation_data_set:
             
             self.OUTPUT_FOLDER_NAME = "train_data"
             
-            self.OUTPUT_LABEL_FOLDER_TRAIN  = "train_data/labels/train"
-            self.OUTPUT_LABEL_FOLDER_VAL    = "train_data/labels/val"
-            self.OUTPUT_IMAGE_FOLDER_TRAIN  = "train_data/images/train"
-            self.OUTPUT_IMAGE_FOLDER_VAL    = "train_data/images/val"
+            self.OUTPUT_LABEL_FOLDER_TRAIN  = "train_data/train_data/labels/train"
+            self.OUTPUT_LABEL_FOLDER_VAL    = "train_data/train_data/labels/val"
+            self.OUTPUT_IMAGE_FOLDER_TRAIN  = "train_data/train_data/images/train"
+            self.OUTPUT_IMAGE_FOLDER_VAL    = "train_data/train_data/images/val"
             
             self.TRAIN_VAL_PERCENTAGE = 0.2
             
-            self.FOLDER_TO_ZIP = "train_data"
+            self.FOLDER_TO_ZIP = "train_data/train_data"
             self.ZIP_FILE_PATH = "train_data.zip"
 
         settings()
@@ -49,16 +49,19 @@ class Training_preparation_data_set:
     def create_training_folder_structure(self, base_dir):
         
         # Diretórios de imagens
-        image_dir = os.path.join(base_dir, "images")
+        output_folder = os.path.join(base_dir, "train_data")
+        
+        image_dir = os.path.join(output_folder, "images")
         train_image_dir = os.path.join(image_dir, "train")
         val_image_dir = os.path.join(image_dir, "val")
 
         # Diretórios de rótulos
-        label_dir = os.path.join(base_dir, "labels")
+        label_dir = os.path.join(output_folder, "labels")
         train_label_dir = os.path.join(label_dir, "train")
         val_label_dir = os.path.join(label_dir, "val")
 
         # Criar diretórios se eles não existirem
+        os.makedirs(output_folder, exist_ok=True)
         os.makedirs(train_image_dir, exist_ok=True)
         os.makedirs(val_image_dir, exist_ok=True)
         os.makedirs(train_label_dir, exist_ok=True)
@@ -129,12 +132,7 @@ class Training_preparation_data_set:
                 shutil.move(source_label, destination_label)
                 
     def zip_folder(self, folder_path, zip_path):
-        """
-        Compacta uma pasta em um arquivo zip.
 
-        :param folder_path: O caminho para a pasta que você deseja compactar.
-        :param zip_path: O caminho para o arquivo zip de destino.
-        """
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, dirs, files in os.walk(folder_path):
                 for file in files:
