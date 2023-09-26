@@ -151,7 +151,7 @@ class Training_preparation_data_set:
 
 if __name__ == "__main__":
     
-    input_folder = r"C:\Users\Lucas Cordeiro\Desktop\teste5"
+    input_folder = r""
     
     training_preparation = Training_preparation_data_set(input_folder)
     training_preparation.run()
